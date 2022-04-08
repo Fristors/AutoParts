@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7ee0704426bb4230becc1c99e4240da4" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="AutoPartsModel.AutoPart" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoPartsModel.BrandCar" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoPartsModel.Car" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoPartsModel.Manufacturer" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoPartsModel.ModelCar" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoPartsModel.Role" Width="1.5" PointX="7.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoPartsModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoPartsModel.User" Width="1.5" PointX="10" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoPartsModel.YearCar" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="AutoPartsModel.FK_AutoPart_Car" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoPartsModel.FK_AutoPart_Manufacturer" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoPartsModel.FK_ModelCar_BrandCar" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoPartsModel.FK_Car_ModelCar" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoPartsModel.FK_Car_YearCar" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoPartsModel.FK_User_Role" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

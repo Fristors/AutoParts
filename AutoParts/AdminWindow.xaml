@@ -1,0 +1,36 @@
+﻿<Window x:Class="AutoParts.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoParts"
+        mc:Ignorable="d"
+        Title="AdminWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+
+        </Grid.ColumnDefinitions>
+
+        <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Автозапчасти" FontFamily="Times New Roman" FontSize="20"/>
+        <Button Grid.Row="1" Margin="5" Content="Автомобили" FontFamily="Times New Roman" FontSize="16" Background="White" BorderBrush="White" Click="Button_Click"/>
+        <Button Grid.Row="2" Margin="5" Content="Детали" FontFamily="Times New Roman" FontSize="16" Background="White" BorderBrush="White" Click="Button_Click_1"/>
+        <Label x:Name="UserName" Grid.Column="1" Content="null" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 5 5 0" FontFamily="Times New Roman" FontSize="14"/>
+        <Label x:Name="InfoPage" Grid.Column="1" Content="Админ-панель" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="26"/>
+        <Line Grid.Column="1" Grid.Row="1" Grid.RowSpan="4" HorizontalAlignment="Left" Width="5" Height="5" Stroke="Black"/>
+        <Frame
+            NavigationUIVisibility="Hidden"
+            Name="FrmMain"
+            Grid.Row="1"
+            Grid.RowSpan="4"
+            Grid.Column="1"/>
+    </Grid>
+</Window>

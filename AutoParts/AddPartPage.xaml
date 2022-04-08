@@ -1,0 +1,48 @@
+﻿<Page x:Class="AutoParts.AddPartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoParts"
+      mc:Ignorable="d" 
+      d:DesignHeight="380" d:DesignWidth="600" Background="White"
+      Title="AddPartPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.ColumnSpan="2" Content="Добавить производителя" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="20"/>
+        <Label Grid.Row="4" Grid.ColumnSpan="4" Content="Добавить деталь" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="20"/>
+        <Label Grid.Row="1" Content="Название" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource LabelFont}"/>
+        <TextBox x:Name="PartBrandTB" Grid.Row="1" Grid.Column="1" FontFamily="Times New Roman" FontSize="14"/>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Добавить" Margin="70,0" FontFamily="Times New Roman" FontSize="16" Click="Button_Click" Height="25" VerticalAlignment="Bottom"/>
+        <DataGrid AutoGenerateColumns="False" x:Name="Grid"  Grid.ColumnSpan="4" Grid.Row="5" Grid.RowSpan="4" Margin="5 0 5 5">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding id}" Header="Номер детали" Width="100"/>
+                <DataGridTextColumn Binding="{Binding Car.ModelCar.BrandCar.brand}" Header="Марка" Width="100"/>
+                <DataGridTextColumn Binding="{Binding Car.ModelCar.model}" Header="Модель" Width="100"/>
+                <DataGridTextColumn Binding="{Binding Car.YearCar.year}" Header="Год" Width="80"/>
+                <DataGridTextColumn Binding="{Binding Manufacturer.name}" Header="Производитель" Width="110"/>
+                <DataGridTextColumn Binding="{Binding price}" Header="Цена" Width="75"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Row="9" Grid.Column="1" HorizontalAlignment="Right" x:Name="updateButton" Height="30" Content="Обновить" Width="70" Click="UpdateButton_Click" />
+        <Button Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" x:Name="deleteButton" Height="30" Content="Удалить" Width="70" Click="DeleteButton_Click" />
+    </Grid>
+</Page>

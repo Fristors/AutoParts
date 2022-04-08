@@ -1,0 +1,44 @@
+﻿<Page x:Class="AutoParts.KorzPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoParts"
+      mc:Ignorable="d" 
+      d:DesignHeight="380" d:DesignWidth="600" Background="White"
+      Title="KorzPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="170"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Grid.ColumnSpan="3" Content="Товары в корзине" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="20"/>
+        <DataGrid AutoGenerateColumns="False" x:Name="Grid"  Grid.ColumnSpan="3" Grid.Row="1" Margin="5 0 5 0" TargetUpdated="Grid_TargetUpdated">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding id}" Header="Номер детали" Width="100"/>
+                <DataGridTextColumn Binding="{Binding name}" Header="Название" Width="130"/>
+                <DataGridTextColumn Binding="{Binding Car.ModelCar.BrandCar.brand}" Header="Марка" Width="70"/>
+                <DataGridTextColumn Binding="{Binding Manufacturer.name}" Header="Производитель" Width="110"/>
+                <DataGridTextColumn Binding="{Binding price}" Header="Цена" Width="75"/>
+                <DataGridTemplateColumn Header="Удалить" Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="False" Click="CheckBox_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label x:Name="CostLb" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Итого - " FontFamily="Times New Roman" FontSize="18" Margin="0 0 5 0"/>
+        <Button x:Name="wordBtn" Grid.Row="3" Grid.Column="2" Margin="55 10 5 10" Content="Создать накладную" Click="Button_Click"/>
+    </Grid>
+</Page>

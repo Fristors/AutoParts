@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AutoPartsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AutoPart">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="idCar" Type="Int32" Nullable="false" />
+    <Property Name="idManufacturer" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Car" Relationship="Self.FK_AutoPart_Car" FromRole="AutoPart" ToRole="Car" />
+    <NavigationProperty Name="Manufacturer" Relationship="Self.FK_AutoPart_Manufacturer" FromRole="AutoPart" ToRole="Manufacturer" />
+  </EntityType>
+  <EntityType Name="BrandCar">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ModelCar" Relationship="Self.FK_ModelCar_BrandCar" FromRole="BrandCar" ToRole="ModelCar" />
+  </EntityType>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="idModel" Type="Int32" Nullable="false" />
+    <Property Name="idYear" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AutoPart" Relationship="Self.FK_AutoPart_Car" FromRole="Car" ToRole="AutoPart" />
+    <NavigationProperty Name="ModelCar" Relationship="Self.FK_Car_ModelCar" FromRole="Car" ToRole="ModelCar" />
+    <NavigationProperty Name="YearCar" Relationship="Self.FK_Car_YearCar" FromRole="Car" ToRole="YearCar" />
+  </EntityType>
+  <EntityType Name="Manufacturer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="AutoPart" Relationship="Self.FK_AutoPart_Manufacturer" FromRole="Manufacturer" ToRole="AutoPart" />
+  </EntityType>
+  <EntityType Name="ModelCar">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idBrand" Type="Int32" />
+    <NavigationProperty Name="BrandCar" Relationship="Self.FK_ModelCar_BrandCar" FromRole="ModelCar" ToRole="BrandCar" />
+    <NavigationProperty Name="Car" Relationship="Self.FK_Car_ModelCar" FromRole="ModelCar" ToRole="Car" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idRole" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="YearCar">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="year" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Car" Relationship="Self.FK_Car_YearCar" FromRole="YearCar" ToRole="Car" />
+  </EntityType>
+  <Association Name="FK_AutoPart_Car">
+    <End Role="Car" Type="Self.Car" Multiplicity="1" />
+    <End Role="AutoPart" Type="Self.AutoPart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AutoPart">
+        <PropertyRef Name="idCar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AutoPart_Manufacturer">
+    <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1" />
+    <End Role="AutoPart" Type="Self.AutoPart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AutoPart">
+        <PropertyRef Name="idManufacturer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ModelCar_BrandCar">
+    <End Role="BrandCar" Type="Self.BrandCar" Multiplicity="0..1" />
+    <End Role="ModelCar" Type="Self.ModelCar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BrandCar">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ModelCar">
+        <PropertyRef Name="idBrand" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Car_ModelCar">
+    <End Role="ModelCar" Type="Self.ModelCar" Multiplicity="1" />
+    <End Role="Car" Type="Self.Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModelCar">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="idModel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Car_YearCar">
+    <End Role="YearCar" Type="Self.YearCar" Multiplicity="1" />
+    <End Role="Car" Type="Self.Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YearCar">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="idYear" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="idRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AutoPartsEntities4" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AutoPart" EntityType="Self.AutoPart" />
+    <EntitySet Name="BrandCar" EntityType="Self.BrandCar" />
+    <EntitySet Name="Car" EntityType="Self.Car" />
+    <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" />
+    <EntitySet Name="ModelCar" EntityType="Self.ModelCar" />
+    <EntitySet Name="Role" EntityType="Self.Role" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <EntitySet Name="YearCar" EntityType="Self.YearCar" />
+    <AssociationSet Name="FK_AutoPart_Car" Association="Self.FK_AutoPart_Car">
+      <End Role="Car" EntitySet="Car" />
+      <End Role="AutoPart" EntitySet="AutoPart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AutoPart_Manufacturer" Association="Self.FK_AutoPart_Manufacturer">
+      <End Role="Manufacturer" EntitySet="Manufacturer" />
+      <End Role="AutoPart" EntitySet="AutoPart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ModelCar_BrandCar" Association="Self.FK_ModelCar_BrandCar">
+      <End Role="BrandCar" EntitySet="BrandCar" />
+      <End Role="ModelCar" EntitySet="ModelCar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Car_ModelCar" Association="Self.FK_Car_ModelCar">
+      <End Role="ModelCar" EntitySet="ModelCar" />
+      <End Role="Car" EntitySet="Car" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Car_YearCar" Association="Self.FK_Car_YearCar">
+      <End Role="YearCar" EntitySet="YearCar" />
+      <End Role="Car" EntitySet="Car" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
