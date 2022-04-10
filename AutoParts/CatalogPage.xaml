@@ -70,7 +70,7 @@
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Border Background="Gray" CornerRadius="15" Margin="5" Padding="5">
+                        <Border Background="LightGray" CornerRadius="15" Margin="5" Padding="5">
                             <Grid VerticalAlignment="Center" HorizontalAlignment="Stretch">
                                 <StackPanel Orientation="Horizontal" Margin="10 0">
                                     <Image Source="{Binding url}" Width="100" HorizontalAlignment="Left" Margin="5 0 5 0"/>

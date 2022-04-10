@@ -19,26 +19,44 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label Grid.Column="0" Grid.ColumnSpan="3" Content="Товары в корзине" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="20"/>
-        <DataGrid AutoGenerateColumns="False" x:Name="Grid"  Grid.ColumnSpan="3" Grid.Row="1" Margin="5 0 5 0" TargetUpdated="Grid_TargetUpdated">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding id}" Header="Номер детали" Width="100"/>
-                <DataGridTextColumn Binding="{Binding name}" Header="Название" Width="130"/>
-                <DataGridTextColumn Binding="{Binding Car.ModelCar.BrandCar.brand}" Header="Марка" Width="70"/>
-                <DataGridTextColumn Binding="{Binding Manufacturer.name}" Header="Производитель" Width="110"/>
-                <DataGridTextColumn Binding="{Binding price}" Header="Цена" Width="75"/>
-                <DataGridTemplateColumn Header="Удалить" Width="80">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <CheckBox IsChecked="False" Click="CheckBox_Click"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <ListBox x:Name="Parts" Grid.ColumnSpan="2" Grid.Row="1" Margin="5" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <ContentPresenter/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="LightGray" CornerRadius="15" Margin="5" Padding="5">
+                        <Grid VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <Image Source="{Binding url}" Width="100" HorizontalAlignment="Left" Margin="5 0 5 0"/>
+                                <Grid HorizontalAlignment="Center">
+                                    <TextBlock Text="{Binding name}" VerticalAlignment="Top" FontSize="20" FontFamily="Times New Roman" FontWeight="Bold" Margin="0 15 0 0"/>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin=" 0 0 0 15">
+                                        <TextBlock Text="{Binding Car.ModelCar.BrandCar.brand}" FontSize="16" FontFamily="Times New Roman"/>
+                                        <TextBlock Text=" " FontSize="16" FontFamily="Times New Roman"/>
+                                        <TextBlock Text="{Binding Car.ModelCar.model}" FontSize="16" FontFamily="Times New Roman"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                            <TextBlock Text="{Binding price}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 5 0 0" FontSize="14" FontFamily="Times New Roman"/>
+                            <Button Content="Удалить" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 0 5" FontSize="14" FontFamily="Times New Roman" Background="LightGray" Foreground="DarkRed" BorderBrush="LightGray" BorderThickness="0" Style="{StaticResource BtnStyle}" Click="Button_Click_1"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <Label x:Name="CostLb" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Итого - " FontFamily="Times New Roman" FontSize="18" Margin="0 0 5 0"/>
-        <Button x:Name="wordBtn" Grid.Row="3" Grid.Column="2" Margin="55 10 5 10" Content="Создать накладную" Click="Button_Click"/>
+        <Button x:Name="wordBtn" Grid.Row="3" Grid.Column="1" Width="150"  Margin="5 7" Content="Создать накладную" HorizontalAlignment="Right" Click="Button_Click"/>
     </Grid>
 </Page>

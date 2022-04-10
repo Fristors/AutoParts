@@ -30,23 +30,12 @@ namespace AutoParts
             {
                 wordBtn.IsEnabled = false;
             }
-            Grid.ItemsSource = Cart.Parts;
+            Parts.ItemsSource = Cart.Parts;
             cost = 0;
             foreach (var a in Cart.Parts)
                 cost += a.price;
             CostLb.Content += cost.ToString() + "руб.";
             
-        }
-        private void Grid_TargetUpdated(object sender, DataTransferEventArgs e)
-        {
-        }
-
-        private void CheckBox_Click(object sender, RoutedEventArgs e)
-        {
-            AutoPart ap = Grid.SelectedItem as AutoPart;
-            Cart.Parts.Remove(ap);
-            FrameApp.frmObj.Navigate(new KorzPage());
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -104,6 +93,14 @@ namespace AutoParts
 
             application.Visible = true;
             document.SaveAs2(@"Receipt.docx");
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ListBoxItem listBoxItem1 = (ListBoxItem)Parts.ContainerFromElement((DependencyObject)sender);
+            var ap = Parts.SelectedItem as AutoPart;
+            Cart.Parts.Remove(ap);
+            FrameApp.frmObj.Navigate(new KorzPage());
         }
     }
 }

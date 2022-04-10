@@ -10,10 +10,19 @@
                 <Setter Property="FontFamily" Value="Times New Roman"/>
             </Style.Setters>
         </Style>
-        <Style x:Key="LbCustom" TargetType="ListBox">
-            <Style.Setters>
-                
-            </Style.Setters>
+        <Style x:Key="BtnStyle" TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <ContentPresenter/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </Application.Resources>
 </Application>
